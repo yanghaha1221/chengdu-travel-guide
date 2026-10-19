@@ -1,0 +1,8 @@
+name = "chengdu-travel-guide"
+compatibility_date = "2026-10-19"
+
+# 纯静态资产：仓库根目录直接发布为公开站点，无需服务端脚本
+# 访问根路径即返回 index.html
+[assets]
+directory = "."
+not_found_handling = "404-page"

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成都旅行手册 · 2人 · 10/25–10/29</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23c0492f'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='%23fff' font-family='serif'%3E蓉%3C/text%3E%3C/svg%3E">
+<style>
+/* ===== 主题变量：白天 / 夜晚 ===== */
+:root{
+  --bg:#f6f1e7; --ink:#2b2620; --sub:#6f6254; --card:#fffdf8; --line:#e3d7c2;
+  --accent:#c0492f; --bamboo:#5e8c6a; --gold:#d0923a; --purple:#7a6fb0; --teal:#4a90a4;
+  --shadow:0 2px 10px rgba(80,60,30,.08);
+}
+html[data-theme="night"]{
+  --bg:#141a26; --ink:#e8e2d6; --sub:#9aa4b5; --card:#1d2534; --line:#2c3648;
+  --accent:#e08a5a; --bamboo:#7fae8f; --gold:#d8b26a; --purple:#a99cd6; --teal:#7fb6c9;
+  --shadow:0 2px 12px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  line-height:1.7; font-size:16px; transition:background .4s,color .4s;
+  padding-bottom:48px;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+h1,h2,.serif{font-family:"Songti SC","STSong","SimSun",serif}
+
+/* ===== 顶部 ===== */
+header.hero{padding:28px 0 8px}
+.hero .kicker{color:var(--accent);font-size:13px;letter-spacing:2px;margin-bottom:6px}
+.hero h1{font-size:30px;font-weight:700;letter-spacing:1px}
+.hero .meta{color:var(--sub);font-size:14px;margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 16px}
+.hero .meta b{color:var(--ink);font-weight:600}
+.themebtn{float:right;border:1px solid var(--line);background:var(--card);color:var(--sub);
+  border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer}
+
+/* ===== 倒计时卡片 ===== */
+.countcard{background:var(--card);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);padding:22px 18px;margin:18px 0;text-align:center}
+.countcard .nextlabel{color:var(--sub);font-size:14px}
+.countcard .nextname{font-size:19px;font-weight:700;margin:4px 0 14px;color:var(--accent)}
+.timer{display:flex;justify-content:center;gap:10px}
+.timer .unit{min-width:64px}
+.timer .num{font-size:38px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;
+  font-family:Georgia,"Songti SC",serif}
+.timer .cap{font-size:12px;color:var(--sub);margin-top:2px}
+.clock{margin-top:14px;font-size:13px;color:var(--sub)}
+.clock b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ===== 通用区块 ===== */
+section{margin:26px 0}
+h2{font-size:21px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:10px;height:10px;background:var(--accent);border-radius:3px;display:inline-block}
+.note{font-size:13px;color:var(--sub)}
+.pending{color:var(--gold);font-weight:600}
+
+/* ===== 地图 ===== */
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:12px}
+.mapbox svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;padding:10px 6px 4px;font-size:13px;color:var(--sub)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:14px;height:4px;border-radius:2px;display:inline-block}
+
+/* ===== 已确认安排 表格 ===== */
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;font-size:14px;table-layout:fixed}
+col.c1{width:22%}col.c2{width:30%}col.c3{width:28%}col.c4{width:20%}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word}
+th{background:var(--line);font-weight:600;color:var(--ink);font-size:13px}
+tr:last-child td{border-bottom:none}
+td a{color:var(--accent);text-decoration:none}
+.emptyrow td{color:var(--sub);font-style:italic}
+
+/* ===== 逐日行程 ===== */
+details.day{background:var(--card);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);margin:12px 0;overflow:hidden}
+details.day>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;
+  align-items:center;gap:12px}
+details.day>summary::-webkit-details-marker{display:none}
+.daydot{width:14px;height:14px;border-radius:50%;flex:none}
+.dayhead{flex:1;min-width:0}
+.dayhead .dtitle{font-weight:700;font-size:17px}
+.dayhead .dsub{font-size:13px;color:var(--sub)}
+.chev{color:var(--sub);transition:transform .2s;font-size:18px}
+details.day[open] .chev{transform:rotate(90deg)}
+.daybody{padding:4px 18px 18px}
+.tl{list-style:none;margin-top:6px}
+.tl li{display:grid;grid-template-columns:74px 1fr;gap:12px;padding:11px 0;border-top:1px dashed var(--line)}
+.tl li:first-child{border-top:none}
+.tl .time{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);font-size:15px}
+.tl .what{font-size:15px}
+.tl .what small{display:block;color:var(--sub);font-size:13px;margin-top:2px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;margin-right:6px;
+  background:var(--gold);color:#fff}
+.tag.free{background:var(--bamboo)}
+.tag.book{background:var(--accent)}
+.navlink{display:inline-block;margin-top:10px;font-size:14px;color:var(--accent);text-decoration:none;
+  border:1px solid var(--accent);border-radius:999px;padding:6px 14px}
+.poigroup{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.poigroup .plabel{font-size:13px;color:var(--sub);margin-right:2px}
+.poi{display:inline-block;font-size:13.5px;color:var(--accent);text-decoration:none;
+  border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 13px}
+.poi:active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.minimap{margin:12px 0 4px;background:var(--bg);border-radius:12px;padding:8px}
+.minimap svg{width:100%;height:auto;display:block}
+
+/* ===== 待办 ===== */
+.todo{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:8px 18px}
+.todo ul{list-style:none;padding:10px 0}
+.todo li{padding:9px 0;border-top:1px dashed var(--line);font-size:15px;display:flex;gap:10px}
+.todo li:first-child{border-top:none}
+.todo li::before{content:"·";color:var(--accent);font-weight:900;font-size:20px;line-height:1.2}
+
+/* ===== 贴士 ===== */
+.tips{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:16px 18px}
+.tips ul{list-style:none}
+.tips li{padding:8px 0;border-top:1px dashed var(--line);font-size:14.5px;display:flex;gap:10px}
+.tips li:first-child{border-top:none}
+.tips li::before{content:"—";color:var(--bamboo);flex:none}
+footer{text-align:center;color:var(--sub);font-size:12px;margin-top:30px}
+@media(max-width:520px){
+  .timer .num{font-size:30px}
+  .timer .unit{min-width:54px}
+  .hero h1{font-size:25px}
+  .tl li{grid-template-columns:62px 1fr;gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===== 顶部 ===== -->
+<header class="hero">
+  <button class="themebtn" id="themeBtn" onclick="toggleTheme()">切换夜间</button>
+  <div class="kicker">CHENGDU · 2 人同行</div>
+  <h1>成都旅行手册</h1>
+  <div class="meta">
+    <span>行程：<b>10月25日（周日）— 10月29日（周四）</b></span>
+    <span>出发：<b>上海虹桥</b></span>
+    <span>落地：<b>成都天府机场</b></span>
+    <span>时区：<b>Asia/Shanghai（UTC+8）</b></span>
+  </div>
+</header>
+
+<!-- ===== 此刻关注 · 倒计时 ===== -->
+<section class="countcard" id="countcard">
+  <div class="nextlabel">距离下一个安排</div>
+  <div class="nextname" id="nextName">计算中…</div>
+  <div class="timer">
+    <div class="unit"><div class="num" id="d">00</div><div class="cap">天</div></div>
+    <div class="unit"><div class="num" id="h">00</div><div class="cap">时</div></div>
+    <div class="unit"><div class="num" id="m">00</div><div class="cap">分</div></div>
+    <div class="unit"><div class="num" id="s">00</div><div class="cap">秒</div></div>
+  </div>
+  <div class="clock">成都现在时间：<b id="nowClock">--:--:--</b>（按北京时间计算，跨时区打开不会错）</div>
+</section>
+
+<!-- ===== 总览地图 ===== -->
+<section>
+  <h2>行程总览地图</h2>
+  <div class="mapbox">
+    <svg viewBox="0 0 360 470" aria-label="行程示意地图">
+      <!-- 底纹手绘网格 -->
+      <g stroke="var(--line)" stroke-width="1" opacity="0.5">
+        <line x1="20" y1="60" x2="340" y2="60"/><line x1="20" y1="150" x2="340" y2="150"/>
+        <line x1="20" y1="240" x2="340" y2="240"/><line x1="20" y1="330" x2="340" y2="330"/>
+      </g>
+      <!-- 路线：D1 机场 -->
+      <path d="M300,90 Q250,120 205,180" fill="none" stroke="#c0492f" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <!-- D2 熊猫北 -> 文殊 -> 春熙 -->
+      <path d="M150,120 Q150,160 165,200 Q180,240 200,255" fill="none" stroke="#5e8c6a" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <!-- D3 武侯祠 -> 草堂 -> 宽窄 -->
+      <path d="M150,330 Q170,300 185,285 Q150,270 130,265" fill="none" stroke="#d0923a" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <!-- D4 三星堆 远北（虚线） -->
+      <path d="M150,120 Q120,80 110,45" fill="none" stroke="#7a6fb0" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"/>
+      <!-- D5 返机场 -->
+      <path d="M200,255 Q260,200 300,90" fill="none" stroke="#4a90a4" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+
+      <!-- 节点 -->
+      <g font-size="12" fill="var(--ink)">
+        <circle cx="300" cy="90" r="7" fill="#c0492f"/><text x="300" y="74" text-anchor="middle">天府机场（D1/D5）</text>
+        <circle cx="110" cy="45" r="6" fill="#7a6fb0"/><text x="110" y="32" text-anchor="middle">三星堆（可选·远）</text>
+        <circle cx="150" cy="120" r="7" fill="#5e8c6a"/><text x="150" y="106" text-anchor="middle">熊猫基地</text>
+        <circle cx="165" cy="200" r="6" fill="#5e8c6a"/><text x="150" y="196" text-anchor="end">文殊院</text>
+        <circle cx="200" cy="255" r="8" fill="#2b2620"/><text x="214" y="259">春熙路·太古里（住市区）</text>
+        <circle cx="150" cy="330" r="7" fill="#d0923a"/><text x="150" y="352" text-anchor="middle">武侯祠·锦里</text>
+        <circle cx="130" cy="265" r="6" fill="#d0923a"/><text x="118" y="261" text-anchor="end">杜甫草堂</text>
+        <circle cx="185" cy="285" r="6" fill="#d0923a"/><text x="198" y="289">宽窄巷子·人民公园</text>
+      </g>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#c0492f"></i>D1 抵达</span>
+      <span><i style="background:#5e8c6a"></i>D2 熊猫·市井</span>
+      <span><i style="background:#d0923a"></i>D3 人文</span>
+      <span><i style="background:#7a6fb0"></i>D4 可选三星堆</span>
+      <span><i style="background:#4a90a4"></i>D5 返程</span>
+    </div>
+  </div>
+  <p class="note">示意图，仅表示相对方位，非精确比例；各天展开后点地点名，可在高德地图里导航。</p>
+</section>
+
+<!-- ===== 已确认安排 ===== -->
+<section>
+  <h2>已确认的机票 / 酒店 / 门票</h2>
+  <table>
+    <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup>
+    <thead><tr><th>类别</th><th>时间</th><th>名称 / 地址</th><th>电话</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>去程机票</td>
+        <td><span class="pending">10/25 09:00 暂定，待截图确认</span></td>
+        <td>上海虹桥 → 成都天府 <span class="pending">（待补航班号/航站楼）</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>返程机票</td>
+        <td><span class="pending">10/29 时刻待补</span></td>
+        <td>成都天府 → 上海虹桥 <span class="pending">（待截图）</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>酒店（25晚）</td>
+        <td>10/25 入住</td>
+        <td>推荐 全季（天府机场T1航站楼店）· 简阳草池街道八月路88号 <span class="pending">（待你预订确认）</span></td>
+        <td><a href="tel:02860583117">028-60583117</a></td>
+      </tr>
+      <tr>
+        <td>酒店（26–28三晚）</td>
+        <td><span class="pending">待订</span></td>
+        <td><span class="pending">建议春熙路/天府广场一带全季，待你定</span></td>
+        <td>—</td>
+      </tr>
+      <tr class="emptyrow">
+        <td>门票</td><td>—</td><td>暂无已出票门票，待截图后填入（确认号不写入公开页面）</td><td>—</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== 逐日行程 ===== -->
+<section>
+  <h2>逐日行程</h2>
+
+  <!-- D1 -->
+  <details class="day" open>
+    <summary>
+      <span class="daydot" style="background:#c0492f"></span>
+      <span class="dayhead"><div class="dtitle">D1 · 10/25 周日 · 抵达成都</div><div class="dsub">落地休整，不排景点 · 住机场附近</div></span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="daybody">
+      <ul class="tl">
+        <li><span class="time">09:00</span><div class="what">上海虹桥机场起飞 <small><span class="pending">暂定，待航班截图确认；以实际出票时刻为准</span></small></div></li>
+        <li><span class="time">12:30</span><div class="what">前后落地成都天府国际机场 <small>飞行约2小时40分，为估算，待实际时刻校正</small></div></li>
+        <li><span class="time">下午</span><div class="what">打车到机场附近全季酒店，入住休整<small>首日不安排景点，养足精神</small></div></li>
+        <li><span class="time">晚</span><div class="what">住 全季（天府机场T1航站楼店）· 八月路88号 · 028-60583117<small>有免费接送机，待你预订确认</small></div></li>
+      </ul>
+      <div class="poigroup">
+        <span class="plabel">高德导航：</span>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E5%85%A8%E5%AD%A3%E9%85%92%E5%BA%97%20%E5%A4%A9%E5%BA%9C%E6%9C%BA%E5%9C%BAT1%E8%88%AA%E7%AB%99%E6%A5%BC%E5%BA%97&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">全季T1航站楼店</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E5%A4%A9%E5%BA%9C%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">天府国际机场</a>
+      </div>
+    </div>
+  </details>
+
+  <!-- D2 -->
+  <details class="day">
+    <summary>
+      <span class="daydot" style="background:#5e8c6a"></span>
+      <span class="dayhead"><div class="dtitle">D2 · 10/26 周一 · 熊猫 + 市井逛吃</div><div class="dsub">周一成博/川博闭馆，已避开 · 住市区</div></span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="daybody">
+      <div class="minimap">
+        <svg viewBox="0 0 320 120">
+          <path d="M70,30 Q120,55 160,70 Q210,85 250,80" fill="none" stroke="#5e8c6a" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+          <g font-size="11" fill="var(--ink)">
+            <circle cx="70" cy="30" r="6" fill="#5e8c6a"/><text x="70" y="20" text-anchor="middle">熊猫基地</text>
+            <circle cx="160" cy="70" r="6" fill="#5e8c6a"/><text x="160" y="62" text-anchor="middle">文殊院</text>
+            <circle cx="250" cy="80" r="6" fill="#5e8c6a"/><text x="250" y="102" text-anchor="middle">春熙路·太古里</text>
+          </g>
+        </svg>
+      </div>
+      <ul class="tl">
+        <li><span class="time">07:30</span><div class="what"><span class="tag book">提前约</span>出发前往大熊猫繁育研究基地<small>公众号提前预约上午场，门票约55元/人；早上熊猫最活跃</small></div></li>
+        <li><span class="time">08:00</span><div class="what">参观熊猫基地<small>下午熊猫多在睡觉，务必早去</small></div></li>
+        <li><span class="time">12:00</span><div class="what">附近午饭</div></li>
+        <li><span class="time">14:00</span><div class="what"><span class="tag free">免费</span>文殊院 · 喝茶、素斋<small>地铁可达，氛围清静</small></div></li>
+        <li><span class="time">16:30</span><div class="what">春熙路 · 太古里<small>IFS爬墙熊猫、裸眼3D大屏打卡</small></div></li>
+        <li><span class="time">18:30</span><div class="what">火锅 / 建设路夜市逛吃<small>不能吃辣点鸳鸯锅、说微辣</small></div></li>
+      </ul>
+      <div class="poigroup">
+        <span class="plabel">高德导航（逐个点选）：</span>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E5%A4%A7%E7%86%8A%E7%8C%AB%E7%B9%81%E8%82%B2%E7%A0%94%E7%A9%B6%E5%9F%BA%E5%9C%B0&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">熊猫基地</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E6%96%87%E6%AE%9E%E9%99%A2&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">文殊院</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%98%A5%E7%86%99%E8%B7%AF%20%E5%A4%AA%E5%8F%A4%E9%87%8C&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">春熙路·太古里</a>
+      </div>
+    </div>
+  </details>
+
+  <!-- D3 -->
+  <details class="day">
+    <summary>
+      <span class="daydot" style="background:#d0923a"></span>
+      <span class="dayhead"><div class="dtitle">D3 · 10/27 周二 · 武侯祠 · 草堂 · 老成都</div><div class="dsub">市区人文一日 · 住市区</div></span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="daybody">
+      <div class="minimap">
+        <svg viewBox="0 0 320 120">
+          <path d="M60,80 Q120,60 170,55 Q220,50 265,65" fill="none" stroke="#d0923a" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+          <g font-size="11" fill="var(--ink)">
+            <circle cx="60" cy="80" r="6" fill="#d0923a"/><text x="60" y="102" text-anchor="middle">武侯祠·锦里</text>
+            <circle cx="170" cy="55" r="6" fill="#d0923a"/><text x="170" y="45" text-anchor="middle">杜甫草堂</text>
+            <circle cx="265" cy="65" r="6" fill="#d0923a"/><text x="265" y="55" text-anchor="middle">宽窄巷子·人民公园</text>
+          </g>
+        </svg>
+      </div>
+      <ul class="tl">
+        <li><span class="time">09:00</span><div class="what">武侯祠 <small>9:00–18:00，17:00停止售票</small></div></li>
+        <li><span class="time">11:00</span><div class="what">锦里古街 · 午饭小吃<small>紧邻武侯祠，不用打车</small></div></li>
+        <li><span class="time">14:00</span><div class="what">杜甫草堂 <small>9:00–18:00，17:00停止售票，可线上购票</small></div></li>
+        <li><span class="time">16:30</span><div class="what">宽窄巷子闲逛</div></li>
+        <li><span class="time">17:30</span><div class="what">人民公园 · 鹤鸣茶社喝茶、掏耳朵</div></li>
+        <li><span class="time">晚</span><div class="what"><span class="tag book">可选购票</span>川剧变脸演出<small>需提前选场次买票，自愿参加</small></div></li>
+      </ul>
+      <div class="poigroup">
+        <span class="plabel">高德导航（逐个点选）：</span>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%AD%A6%E4%BE%AF%E7%A5%A0%20%E6%88%90%E9%83%BD&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">武侯祠</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E9%94%A6%E9%87%8C%E5%8F%A4%E8%A1%97%20%E6%88%90%E9%83%BD&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">锦里</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%9D%9C%E7%94%AB%E8%8D%89%E5%A0%82%20%E6%88%90%E9%83%BD&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">杜甫草堂</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%20%E6%88%90%E9%83%BD&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">宽窄巷子</a>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E4%BA%BA%E6%B0%91%E5%85%AC%E5%9B%AD%20%E6%88%90%E9%83%BD&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">人民公园</a>
+      </div>
+    </div>
+  </details>
+
+  <!-- D4 -->
+  <details class="day">
+    <summary>
+      <span class="daydot" style="background:#7a6fb0"></span>
+      <span class="dayhead"><div class="dtitle">D4 · 10/28 周三 · 弹性日（轻松 / 三星堆二选一）</div><div class="dsub">待你决定 · 住市区</div></span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="daybody">
+      <ul class="tl">
+        <li><span class="time">方案A</span><div class="what">轻松版：市区补漏 + 采买伴手礼<small>熊猫周边、火锅底料、牛肉干；睡到自然醒</small></div></li>
+        <li><span class="time">方案B</span><div class="what"><span class="tag book">提前抢票</span>三星堆博物馆（广汉，单程约1小时）<small>门票约72–80元，提前5天20:00小程序抢上午场；建议成都东坐高铁到广汉北再转车，纯打车往返不便</small></div></li>
+      </ul>
+      <p class="note" style="margin-top:8px">这一天怎么安排，等你定了我再写死。</p>
+    </div>
+  </details>
+
+  <!-- D5 -->
+  <details class="day">
+    <summary>
+      <span class="daydot" style="background:#4a90a4"></span>
+      <span class="dayhead"><div class="dtitle">D5 · 10/29 周四 · 返程</div><div class="dsub">时刻待补，按航班重排</div></span>
+      <span class="chev">›</span>
+    </summary>
+    <div class="daybody">
+      <ul class="tl">
+        <li><span class="time">上午</span><div class="what">退房、自由活动</div></li>
+        <li><span class="time">航班前2.5h</span><div class="what">出发前往天府机场<small>市区打车到天府机场约1小时，预留充足时间</small></div></li>
+        <li><span class="time">待定</span><div class="what">成都天府 → 上海虹桥 <small><span class="pending">返程航班时刻待你发截图后填入并重排本日</span></small></div></li>
+      </ul>
+      <div class="poigroup">
+        <span class="plabel">高德导航：</span>
+        <a class="poi" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=%E6%88%90%E9%83%BD%E5%A4%A9%E5%BA%9C%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&city=%E6%88%90%E9%83%BD&src=chengdu-guide&callnative=1">天府国际机场</a>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 待办（纯列表，不勾选） ===== -->
+<section>
+  <h2>待办清单</h2>
+  <div class="todo">
+    <ul>
+      <li>发去程、返程航班截图，确认起降时刻与航站楼</li>
+      <li>预订 10/25 晚机场附近全季（T1航站楼店）</li>
+      <li>预订 10/26–28 三晚市区全季（建议春熙路一带）</li>
+      <li>提前在公众号预约熊猫基地上午场（2人）</li>
+      <li>若去三星堆：提前5天20:00小程序抢上午场票</li>
+      <li>川剧变脸选定场次并购票（自愿）</li>
+      <li>确认两人证件，收拾薄外套、充电宝、雨具</li>
+      <li>把返程航班时刻发我，重排 D5</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 实用贴士 ===== -->
+<section>
+  <h2>实用贴士</h2>
+  <div class="tips">
+    <ul>
+      <li>全程按北京时间（UTC+8）记录，倒计时跨时区打开也不会算错。</li>
+      <li>10月底成都约12–20℃，早晚凉，带一件薄外套。</li>
+      <li>市区景点集中、打车方便；三星堆在广汉较远，建议高铁而非纯打车。</li>
+      <li>不能吃辣一定提前说“微辣/免辣”，火锅点鸳鸯锅。</li>
+      <li>熊猫基地务必早上去，下午熊猫大多在睡觉。</li>
+      <li>周一成都博物馆、四川博物院闭馆，本行程已避开这两天。</li>
+      <li>预约景点刷身份证入园，证件随身带。</li>
+      <li>确认号、证件号、房号不写进本页面（公开网址谁都能看）。</li>
+    </ul>
+  </div>
+</section>
+
+<footer>成都旅行手册 · 草稿版 · 待航班与酒店信息确认后定稿</footer>
+</div>
+
+<script>
+// ===== 锚点事件（北京时间 ISO，跨时区正确）=====
+var EVENTS = [
+  {t:'2026-10-25T09:00:00+08:00', name:'虹桥机场起飞（暂定）'},
+  {t:'2026-10-25T12:30:00+08:00', name:'落地成都天府机场（估算）'},
+  {t:'2026-10-26T07:30:00+08:00', name:'出发去熊猫基地'},
+  {t:'2026-10-27T09:00:00+08:00', name:'武侯祠开馆'},
+  {t:'2026-10-29T00:00:00+08:00', name:'返程日（时刻待补）'}
+];
+function pad(n){return String(n).padStart(2,'0');}
+function nextEvent(){
+  var now=Date.now();
+  for(var i=0;i<EVENTS.length;i++){ if(Date.parse(EVENTS[i].t)>now) return EVENTS[i]; }
+  return null;
+}
+function tick(){
+  var ev=nextEvent();
+  var nd=document.getElementById('d'),nh=document.getElementById('h'),nm=document.getElementById('m'),ns=document.getElementById('s');
+  var nn=document.getElementById('nextName');
+  if(!ev){
+    nn.textContent='行程安排已结束';
+    nd.textContent=nh.textContent=nm.textContent=ns.textContent='00';
+  }else{
+    nn.textContent=ev.name;
+    var diff=Date.parse(ev.t)-Date.now();
+    var day=Math.floor(diff/86400000);
+    var hr=Math.floor(diff%86400000/3600000);
+    var mi=Math.floor(diff%3600000/60000);
+    var se=Math.floor(diff%60000/1000);
+    nd.textContent=pad(day);nh.textContent=pad(hr);nm.textContent=pad(mi);ns.textContent=pad(se);
+  }
+  // 成都当前时钟
+  try{
+    var s=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
+    document.getElementById('nowClock').textContent=s;
+  }catch(e){ document.getElementById('nowClock').textContent=new Date().toLocaleTimeString(); }
+}
+setInterval(tick,1000);tick();
+
+// ===== 白天/黑夜自动配色 + 手动切换 =====
+function autoTheme(){
+  var h=new Date().getHours();
+  return (h>=6 && h<18)?'day':'night';
+}
+function applyTheme(mode){
+  document.documentElement.setAttribute('data-theme',mode);
+  document.getElementById('themeBtn').textContent = mode==='night'?'切换白天':'切换夜间';
+}
+applyTheme(autoTheme());
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute('data-theme');
+  applyTheme(cur==='night'?'day':'night');
+}
+</script>
+</body>
+</html>
